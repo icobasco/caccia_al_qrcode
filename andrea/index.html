@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="html5-qrcode.min.js"></script>
+    <script>
+        // https://blog.minhazav.dev/research/html5-qrcode.html#scan-using-file
+        // https://minhazav.medium.com/qr-code-scanner-using-html-and-javascript-3895a0c110cd
+        function myFunction(){
+		 console.log("myFunction(): inizio");
+
+            Html5Qrcode.getCameras().then(cameras => {
+      /**
+        * devices would be an array of objects of type:
+        * { id: "id", label: "label" }
+        * 
+       */
+	   console.log("Ci sono " + devices.length);
+       if (devices && devices.length) {
+           var cameraId = devices[0].id;
+            // .. use this to start scanning.
+        }
+   }).catch(err => {
+        // handle err   
+		 console.log("myFunction(): fine");
+});
+
+function onScanSuccess(decodedText, decodedResult) {
+    // Handle on success condition with the decoded text or result.
+    console.log(`Scan result: ${decodedText}`, decodedResult);
+    html5QrcodeScanner.clear();
+}
+
+var html5QrcodeScanner = new Html5QrcodeScanner(
+	"reader", { fps: 10, qrbox: 250 });
+    
+	html5QrcodeScanner.render(onScanSuccess);
+
+        }
+        
+    </script>
+</head>
+<body onload="myFunction()">
+    <div id="reader">ocococ</div>
+</body>
+</html>
